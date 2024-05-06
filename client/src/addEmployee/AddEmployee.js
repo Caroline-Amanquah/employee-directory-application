@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import "./AddEmployee.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const AddEmployee = () => {
   // Initial state for the user form
   const employees = {
-    name: "",
+    employeeID: "",
+    fullName: "",
+    age: "",
+    homeAddress: "",
+    mobileNumber: "",
     email: "",
-    address: "",
+    jobTitle: "",
+    department: "",
+    annualSalary: "",
+    startDate: ""
   };
 
   // state to manage user form data
@@ -18,6 +25,7 @@ const AddEmployee = () => {
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setEmployee({ ...employee, [name]: value });
   };
 
@@ -26,13 +34,21 @@ const AddEmployee = () => {
     await axios
       .post("http://localhost:5000/api/employee", employee)
       .then((response) => {
-        toast.success(response.data.message, { position: "top-right" });
+        console.log("Employee created successfully.")
         navigate("/");
       })
-      .catch((error) => {
-        console.log(error);
+
+      .catch((error)=>{
+        console.log(error)
       });
   };
+    //     toast.success(response.data.message, { position: "top-right" });
+    //     navigate("/");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+//   };
 
   return (
     <div className="addEmployee">
@@ -46,8 +62,8 @@ const AddEmployee = () => {
           <label htmlFor="name">Employee ID:</label>
           <input
             type="number"
-            onChange={inputHandler}
             id="employeeID"
+            onChange={inputHandler}
             name="employeeID"
             autoComplete="off"
             maxLength={6}
@@ -55,22 +71,22 @@ const AddEmployee = () => {
           />
         </div>
         <div className="inputGroup">
-          <label htmlFor="name">Full Name:</label>
+          <label htmlFor="fullName">Full Name:</label>
           <input
             type="text"
+            id="fullName"
             onChange={inputHandler}
-            id="name"
-            name="name"
+            name="fullName"
             autoComplete="off"
             placeholder="Enter your name"
           />
         </div>
         <div className="inputGroup">
-          <label htmlFor="name">Age:</label>
+          <label htmlFor="age">Age:</label>
           <input
             type="number"
-            onChange={inputHandler}
             id="age"
+            onChange={inputHandler}
             name="age"
             autoComplete="off"
             maxLength={3}
@@ -78,23 +94,23 @@ const AddEmployee = () => {
           />
         </div>
         <div className="inputGroup">
-          <label htmlFor="address">Home Address:</label>
+          <label htmlFor="homeAddress">Home Address:</label>
           <input
             type="text"
+            id="homeAddress"
             onChange={inputHandler}
-            id="address"
-            name="address"
+            name="homeAddress"
             autoComplete="off"
             placeholder="Enter your address"
           />
         </div>
         <div className="inputGroup">
-          <label htmlFor="name">Mobile Number:</label>
+          <label htmlFor="mobileNumber">Mobile Number:</label>
           <input
             type="number"
+            id="mobileNumber"
             onChange={inputHandler}
-            id="number"
-            name="number"
+            name="mobileNumber"
             autoComplete="off"
             maxLength={11}
             placeholder="Enter your mobile number"
@@ -104,8 +120,8 @@ const AddEmployee = () => {
           <label htmlFor="email">Email Address:</label>
           <input
             type="text"
-            onChange={inputHandler}
             id="email"
+            onChange={inputHandler}
             name="email"
             autoComplete="off"
             placeholder="Enter your email"
@@ -115,8 +131,8 @@ const AddEmployee = () => {
           <label htmlFor="jobTitle">Job Title:</label>
           <input
             type="text"
-            onChange={inputHandler}
             id="jobTitle"
+            onChange={inputHandler}
             name="jobTitle"
             autoComplete="off"
             placeholder="Enter your job title"
@@ -126,8 +142,8 @@ const AddEmployee = () => {
           <label htmlFor="department">Department:</label>
           <input
             type="text"
-            onChange={inputHandler}
             id="department"
+            onChange={inputHandler}
             name="department"
             autoComplete="off"
             placeholder="Enter your department"
@@ -137,8 +153,8 @@ const AddEmployee = () => {
           <label htmlFor="annualSalary">Annual Salary:</label>
           <input
             type="text"
-            onChange={inputHandler}
             id="annualSalary"
+            onChange={inputHandler}
             name="annualSalary"
             autoComplete="off"
             placeholder="Enter your annual salary"
@@ -148,8 +164,8 @@ const AddEmployee = () => {
           <label htmlFor="startDate">Start Date:</label>
           <input
             type="date"
-            onChange={inputHandler}
             id="startDate"
+            onChange={inputHandler}
             name="startDate"
             autoComplete="off"
             placeholder="Enter your start date"

@@ -50,7 +50,5 @@ const employeeSchema = new mongoose.Schema({
       }
     });
     
-    employeeSchema.virtual('formattedStartDate').get(function() {
-      return this.startDate ? format(this.startDate, 'dd/MM/yyyy') : '';
-    });
+
 export default mongoose.model("Employees", employeeSchema)

@@ -1,4 +1,4 @@
-import './employee.css'
+import './Employee.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
@@ -21,8 +21,8 @@ const Employee = () => {
 
   return (
     <div className="employeeTable">
-        <Link to="/add" type="button" class="btn btn-primary">Add Employee
-        <i class="fa-solid fa-user-plus"></i>
+        <Link to="/add" type="button" className="btn btn-primary">Add Employee
+        <i className="fa-solid fa-user-plus"></i>
         </Link>
       <table className="table table-bordered">
         <thead>
@@ -54,11 +54,11 @@ const Employee = () => {
                 <td>£{employee.annualSalary}</td>
                 <td>{employee.startDate}</td>
                 <td className="actionButtons">
-                <button type="button" class="btn btn-info">
-                <i class="fa-solid fa-pen-to-square"></i>
+                <button type="button" className="btn btn-info">
+                <i className="fa-solid fa-pen-to-square"></i>
                 </button>
-                <button type="button" class="btn btn-danger"  >
-                    <i class="fa-solid fa-trash"></i>
+                <button type="button" className="btn btn-danger"  >
+                    <i className="fa-solid fa-trash"></i>
                 </button>
                 </td>
                 </tr>
@@ -76,11 +76,11 @@ const Employee = () => {
             <td>hi</td>
             <td>hi</td>
             <td className="actionButtons">
-            <button type="button" class="btn btn-info">
-            <i class="fa-solid fa-pen-to-square"></i>
+            <button type="button" className="btn btn-info">
+            <i className="fa-solid fa-pen-to-square"></i>
             </button>
-            <button type="button" class="btn btn-danger"  >
-                <i class="fa-solid fa-trash"></i>
+            <button type="button" className="btn btn-danger"  >
+                <i className="fa-solid fa-trash"></i>
             </button>
             </td>
         </tbody>
