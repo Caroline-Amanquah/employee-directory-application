@@ -1,6 +1,7 @@
 // responsible for managing the structure of data and interaction with the database 
 
 import mongoose from "mongoose"
+import { format } from 'date-fns';
 
 const employeeSchema = new mongoose.Schema({
     employeeID: {
@@ -42,10 +43,14 @@ const employeeSchema = new mongoose.Schema({
       type: Number,
       required: true
     },
+
     startDate: {
-      type: Date,
-      required: true
-    }
-  });
-  
+        type: Date,
+        required: true
+      }
+    });
+    
+    employeeSchema.virtual('formattedStartDate').get(function() {
+      return this.startDate ? format(this.startDate, 'dd/MM/yyyy') : '';
+    });
 export default mongoose.model("Employees", employeeSchema)
