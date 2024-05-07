@@ -1,6 +1,7 @@
 import './App.css';
-import Employee from './getEmployee/Employee';
+import Employee from './getEmployee/GetEmployee';
 import AddEmployee from './addEmployee/AddEmployee';
+import UpdateEmployee from './updateEmployee/UpdateEmployee';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,12 @@ function App() {
    element: <AddEmployee />
 
   },
+  {
+    path: "/update/:id",
+    element: <UpdateEmployee />
+ 
+   },
+  
 ]);
 
   return (

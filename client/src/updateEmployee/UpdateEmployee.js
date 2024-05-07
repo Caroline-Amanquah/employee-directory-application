@@ -1,49 +1,63 @@
-import React, { useState } from "react";
-import "./AddEmployee.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "./UpdateEmployee.css";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const AddEmployee = () => {
-  // Initial state for the user form
-  const employees = {
-    employeeID: "",
-    fullName: "",
-    age: "",
-    homeAddress: "",
-    mobileNumber: "",
-    email: "",
-    jobTitle: "",
-    department: "",
-    annualSalary: "",
-    startDate: ""
-  };
-
-
-  // state to manage user form data
-  const [employee, setEmployee] = useState(employees);
-  const navigate = useNavigate();
-
-
-  const inputHandler = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    setEmployee({ ...employee, [name]: value });
-  };
-
-  const submitForm = async (e) => {
-    e.preventDefault();
-    await axios
-      .post("http://localhost:5000/api/employee", employee)
-      .then((response) => {
-        toast.success(response.data.message,{position: "top-right" });
-        navigate("/");
-      })
-
-      .catch((error)=>{
-        console.log(error)
-      });
-  };
+const UpdateEmployee = () => {
+    const [employee, setEmployee] = useState({
+      employeeID: "",
+      fullName: "",
+      age: "",
+      homeAddress: "",
+      mobileNumber: "",
+      email: "",
+      jobTitle: "",
+      department: "",
+      annualSalary: "",
+      startDate: "",
+    });
+    const navigate = useNavigate();
+    const { id } = useParams();
+  
+    useEffect(() => {
+        axios
+          .get(`http://localhost:5000/api/employee/${id}`)
+          .then((response) => {
+            const employeeData = response.data;
+            // Assuming `startDate` is the field you need to format
+            if (employeeData.startDate) {
+              // Convert ISO date string to "YYYY-MM-DD" format for the date input
+              employeeData.startDate = employeeData.startDate.split('T')[0];
+            }
+            setEmployee(employeeData);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, [id]);
+      
+  
+    const inputHandler = (e) => {
+      const { name, value } = e.target;
+      setEmployee(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    };
+  
+    const submitForm = async (e) => {
+      e.preventDefault();
+      axios.put(`http://localhost:5000/api/update/employee/${id}`, employee)
+        .then(response => {
+          toast.success("Updated successfully!");
+          navigate("/");
+        })
+        .catch(error => {
+          toast.error("Failed to update!");
+          console.error("Update error", error);
+        });
+    };
 
   return (
     <div className="addEmployee">
@@ -51,13 +65,14 @@ const AddEmployee = () => {
         <i className="fa-solid fa-backward"></i> Back
       </Link>
 
-      <h3>Add New Employee</h3>
+      <h3> Update Employee Form</h3>
       <form className="addEmployeeForm" onSubmit={submitForm}>
         <div className="inputGroup">
           <label htmlFor="name">Employee ID:</label>
           <input
             type="number"
             id="employeeID"
+            value={employee.employeeID}
             onChange={inputHandler}
             name="employeeID"
             autoComplete="off"
@@ -70,6 +85,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="fullName"
+            value={employee.fullName}
             onChange={inputHandler}
             name="fullName"
             autoComplete="off"
@@ -81,6 +97,7 @@ const AddEmployee = () => {
           <input
             type="number"
             id="age"
+            value={employee.age}
             onChange={inputHandler}
             name="age"
             autoComplete="off"
@@ -93,6 +110,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="homeAddress"
+            value={employee.homeAddress}
             onChange={inputHandler}
             name="homeAddress"
             autoComplete="off"
@@ -104,6 +122,7 @@ const AddEmployee = () => {
           <input
             type="number"
             id="mobileNumber"
+            value={employee.mobileNumber}
             onChange={inputHandler}
             name="mobileNumber"
             autoComplete="off"
@@ -116,6 +135,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="email"
+            value={employee.email}
             onChange={inputHandler}
             name="email"
             autoComplete="off"
@@ -127,6 +147,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="jobTitle"
+            value={employee.jobTitle}
             onChange={inputHandler}
             name="jobTitle"
             autoComplete="off"
@@ -138,6 +159,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="department"
+            value={employee.department}
             onChange={inputHandler}
             name="department"
             autoComplete="off"
@@ -149,6 +171,7 @@ const AddEmployee = () => {
           <input
             type="text"
             id="annualSalary"
+            value={employee.annualSalary}
             onChange={inputHandler}
             name="annualSalary"
             autoComplete="off"
@@ -160,6 +183,7 @@ const AddEmployee = () => {
           <input
             type="date"
             id="startDate"
+            value={employee.startDate || ''}
             onChange={inputHandler}
             name="startDate"
             autoComplete="off"
@@ -177,4 +201,4 @@ const AddEmployee = () => {
 };
 
 
-export default AddEmployee;
+export default UpdateEmployee;

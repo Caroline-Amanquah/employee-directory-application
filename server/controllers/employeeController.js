@@ -1,7 +1,8 @@
-// responsible for managing, handling and generating the requests and   processing data  
+// responsible for managing, handling and generating the requests and processing data.  
 
 import Employee from "../model/employeeModel.js"
 
+//
 export const getAllEmployees = async (req, res) => {
     try {
       const employeeData = await Employee.find();
@@ -29,7 +30,8 @@ export const create = async (req, res) => {
 
         // Saving the new employee data to the database
         const savedData = await newEmployee.save();
-        res.status(200).json(savedData); // Sending the saved data back as response
+        // res.status(200).json(savedData); // Sending the saved data back as response
+        res.status(200).json ({ message: "User created successfully." })
     } catch (error) {
         res.status(500).json({ errorMessage: error.message }); // Handling errors
     }
@@ -70,7 +72,7 @@ export const update = async (req, res) => {
         // If the user exists, update the user data with the new data from req.body
         const updatedData = await Employee.findByIdAndUpdate(id, req.body, { new: true });
         // Respond with the updated data
-        res.status(200).json(updatedData);
+        res.status(200).json({message: "User Updated Successfully."});
     } catch (error) {
         // If an error occurs, return a 500 error with the error message
         res.status(500).json({ errorMessage: error.message });
