@@ -6,7 +6,9 @@
     padding: 40px;
     border-radius: 5px;
   }
-  
+.error {
+    color: red;
+}
   .addEmployeeForm .inputGroup {
     width: 100%;
     display: flex;
