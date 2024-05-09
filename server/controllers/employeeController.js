@@ -1,8 +1,8 @@
-// responsible for managing, handling and generating the requests and processing data.  
-//employeeController
+// employeeController: responsible for managing, handling and generating the requests and processing data.  
+
 import Employee from "../model/employeeModel.js"
 
-//
+
 export const getAllEmployees = async (req, res) => {
     try {
       const employeeData = await Employee.find();

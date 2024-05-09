@@ -1,5 +1,5 @@
-// responsible for managing the structure of data and interaction with the database 
-// employeeModel.js
+// employeeModel.js: responsible for managing the structure of data and interaction with the database 
+
 import mongoose from "mongoose"
 
 

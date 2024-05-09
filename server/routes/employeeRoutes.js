@@ -1,6 +1,4 @@
-// defines the endpoints of the application and also maps them to specific controller methods 
-
-//employeeRoutes
+//employeeRoutes: defines the endpoints of the application and also maps them to specific controller methods 
 
 
 import express from "express";
