@@ -1,9 +1,7 @@
-// responsible for managing, handling and generating the requests and processing data.  
-//employeeController
-import Employee from "../model/employeeModel.js"
+const Employee = require("../model/employeeModel.js");
 
 //
-export const getAllEmployees = async (req, res) => {
+const getAllEmployees = async (req, res) => {
     try {
       const employeeData = await Employee.find();
       if (!employeeData || employeeData.length === 0) {
@@ -15,9 +13,8 @@ export const getAllEmployees = async (req, res) => {
     }
 };
 
-
 // Create endpoint
-export const create = async (req, res) => {
+const create = async (req, res) => {
     try {
         const newEmployee = new Employee(req.body); // Creating a new employee from request body
         const { employeeID } = newEmployee; // Destructuring to get employeeID from the new employee object
@@ -38,8 +35,7 @@ export const create = async (req, res) => {
 };
 
 // Read endpoint 
-
-export const getEmployeeById = async (req, res) => {
+const getEmployeeById = async (req, res) => {
     try {
         const id = req.params.id;  // Retrieving the user ID from request parameters
         const employeeExist = await Employee.findById(id);  // Using Mongoose to find the user by ID
@@ -58,8 +54,7 @@ export const getEmployeeById = async (req, res) => {
 };
 
 // Update endpoint
-
-export const update = async (req, res) => {
+const update = async (req, res) => {
     try {
         const id = req.params.id; // Extracting the user ID from the request parameters
         const employeeExist = await Employee.findById(id); // Checking if the user exists in the database
@@ -80,8 +75,7 @@ export const update = async (req, res) => {
 };
 
 //Delete Endpoint
-
-export const deleteEmployee = async (req, res) => {
+const deleteEmployee = async (req, res) => {
     try {
         const id = req.params.id;  // Retrieve the ID from the request parameters
         const employeeExist = await Employee.findById(id);  // Check if the user exists in the database
@@ -99,6 +93,6 @@ export const deleteEmployee = async (req, res) => {
         // If an error occurs, return a 500 Internal Server Error response
         res.status(500).json({ errorMessage : error.message });
     }
-    };
+};
 
-   
+module.exports = { getAllEmployees, create, getEmployeeById, update, deleteEmployee };

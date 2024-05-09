@@ -1,7 +1,7 @@
 // responsible for managing the structure of data and interaction with the database 
-
+// employeeModel.js
 import mongoose from "mongoose"
-import { format } from 'date-fns';
+
 
 const employeeSchema = new mongoose.Schema({
     employeeID: {

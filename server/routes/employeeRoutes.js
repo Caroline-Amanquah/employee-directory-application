@@ -1,6 +1,7 @@
 // defines the endpoints of the application and also maps them to specific controller methods 
 
-// Create endpoint:
+//employeeRoutes
+
 
 import express from "express";
 import { getAllEmployees, create, deleteEmployee, getEmployeeById, update } from "../controllers/employeeController.js";
