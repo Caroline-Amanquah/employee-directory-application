@@ -39,40 +39,79 @@ const AddEmployee = () => {
 };
 
 
+// const validateField = (name, value) => {
+//   switch (name) {
+//       case 'employeeID':
+//           return value.trim().length === 6 && !isNaN(value.trim())
+//               ? ''
+//               : 'Employee ID must be 6 numbers.';
+//       case 'fullName':
+//           return value.trim() ? '' : 'Enter your full name.';
+//       case 'age':
+//           return value.trim() ? '' : 'Enter your age.';
+//       case 'homeAddress':
+//           return value.trim() ? '' : 'Enter your home address.';
+//       case 'mobileNumber':
+//           return /^\d{11}$/.test(value.trim())
+//               ? ''
+//               : 'Mobile number must be 11 digits long.';
+//       case 'email':
+//           return /^\S+@\S+\.\S+$/.test(value.trim())
+//               ? ''
+//               : 'Enter a valid email address.';
+//       case 'jobTitle':
+//           return value.trim() ? '' : 'Enter your job title.';
+//       case 'department':
+//           return value.trim() ? '' : 'Enter your department.';
+//       case 'annualSalary':
+//           return /^\d+(\.\d{1,2})?$/.test(value.trim())
+//               ? ''
+//               : 'Enter a valid annual salary.';
+//       case 'startDate':
+//           return value.trim() ? '' : 'Enter your start date.';
+//       default:
+//           return '';
+//   }
+// };
+
 const validateField = (name, value) => {
+  // Ensure the value is treated as a string
+  const stringValue = value ? value.toString().trim() : '';
+
   switch (name) {
       case 'employeeID':
-          return value.trim().length === 6 && !isNaN(value.trim())
+          return stringValue.length === 6 && !isNaN(stringValue)
               ? ''
               : 'Employee ID must be 6 numbers.';
       case 'fullName':
-          return value.trim() ? '' : 'Enter your full name.';
+          return stringValue ? '' : 'Enter your full name.';
       case 'age':
-          return value.trim() ? '' : 'Enter your age.';
+          return stringValue ? '' : 'Enter your age.';
       case 'homeAddress':
-          return value.trim() ? '' : 'Enter your home address.';
+          return stringValue ? '' : 'Enter your home address.';
       case 'mobileNumber':
-          return /^\d{11}$/.test(value.trim())
+          return /^\d{11}$/.test(stringValue)
               ? ''
               : 'Mobile number must be 11 digits long.';
       case 'email':
-          return /^\S+@\S+\.\S+$/.test(value.trim())
+          return /^\S+@\S+\.\S+$/.test(stringValue)
               ? ''
               : 'Enter a valid email address.';
       case 'jobTitle':
-          return value.trim() ? '' : 'Enter your job title.';
+          return stringValue ? '' : 'Enter your job title.';
       case 'department':
-          return value.trim() ? '' : 'Enter your department.';
+          return stringValue ? '' : 'Enter your department.';
       case 'annualSalary':
-          return /^\d+(\.\d{1,2})?$/.test(value.trim())
+          return /^\d+(\.\d{1,2})?$/.test(stringValue)
               ? ''
               : 'Enter a valid annual salary.';
       case 'startDate':
-          return value.trim() ? '' : 'Enter your start date.';
+          return stringValue ? '' : 'Enter your start date.';
       default:
           return '';
   }
 };
+
 
 
   const submitForm = async (e) => {
@@ -116,7 +155,7 @@ const validateField = (name, value) => {
         <i className="fa-solid fa-backward"></i> Back
       </Link>
 
-      <h3>Add New Employee</h3>
+      <h3>Employee Form</h3>
       <form className="addEmployeeForm" onSubmit={submitForm}>
         <div className="inputGroup">
           <label htmlFor="name">Employee ID:</label>

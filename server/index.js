@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 7000;
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/employeedb';
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/yourDatabaseName';
 
 app.use(bodyParser.json());
 app.use(cors());

@@ -51,35 +51,38 @@ const UpdateEmployee = () => {
     };
   
     const validateField = (name, value) => {
+        // Ensure the value is treated as a string
+        const stringValue = value ? value.toString().trim() : '';
+   
         switch (name) {
             case 'employeeID':
-                return value.trim().length === 6 && !isNaN(value.trim())
+                return stringValue.length === 6 && !isNaN(stringValue)
                     ? ''
                     : 'Employee ID must be 6 numbers.';
             case 'fullName':
-                return value.trim() ? '' : 'Enter your full name.';
+                return stringValue ? '' : 'Enter your full name.';
             case 'age':
-                return value.trim() ? '' : 'Enter your age.';
+                return stringValue ? '' : 'Enter your age.';
             case 'homeAddress':
-                return value.trim() ? '' : 'Enter your home address.';
+                return stringValue ? '' : 'Enter your home address.';
             case 'mobileNumber':
-                return /^\d{11}$/.test(value.trim())
+                return /^\d{11}$/.test(stringValue)
                     ? ''
                     : 'Mobile number must be 11 digits long.';
             case 'email':
-                return /^\S+@\S+\.\S+$/.test(value.trim())
+                return /^\S+@\S+\.\S+$/.test(stringValue)
                     ? ''
                     : 'Enter a valid email address.';
             case 'jobTitle':
-                return value.trim() ? '' : 'Enter your job title.';
+                return stringValue ? '' : 'Enter your job title.';
             case 'department':
-                return value.trim() ? '' : 'Enter your department.';
+                return stringValue ? '' : 'Enter your department.';
             case 'annualSalary':
-                return /^\d+(\.\d{1,2})?$/.test(value.trim())
+                return /^\d+(\.\d{1,2})?$/.test(stringValue)
                     ? ''
                     : 'Enter a valid annual salary.';
             case 'startDate':
-                return value.trim() ? '' : 'Enter your start date.';
+                return stringValue ? '' : 'Enter your start date.';
             default:
                 return '';
         }
@@ -104,7 +107,7 @@ const UpdateEmployee = () => {
             return;
         }
         try {
-            const response = await axios.post(`http://localhost:5000/api/update/employee/${id}`, employee);
+            const response = await axios.put(`http://localhost:5000/api/update/employee/${id}`, employee);
             toast.success(response.data.message, { position: "top-right" });
             navigate("/");
         } catch (error) {
