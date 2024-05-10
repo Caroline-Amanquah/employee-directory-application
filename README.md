@@ -1,4 +1,4 @@
-<h1 align="center">Employee CRUD Operations Final Case Study</h1>
+<h1 align="center"> Full Stack Employee Directory Application</h1>
 
 <h2 align="center">Getting Started</h2>
 
