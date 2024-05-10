@@ -5,7 +5,7 @@
 To set up and run the frontend application:
 
 ```bash
-cd frontend
+cd client
 npm install
 npm start 
 ```
@@ -13,7 +13,7 @@ npm start
 To set up and run the backend in a separate terminal:
 
 ```bash
-cd backend
+cd server
 npm install
 nodemon index.js  
 ```
@@ -31,4 +31,24 @@ cd backend
 
 
 Access the employee directory at http://localhost:3000.
+
 Access the JSON data of employees at http://localhost:5000/api/employees.
+
+If this error occurs:
+
+```bash
+nodemon : The term 'nodemon' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
+the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ nodemon index.js
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (nodemon:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+```
+
+Please install nodemon globally by running the following command:
+
+```bash
+npm install -g nodemon
+```
+
