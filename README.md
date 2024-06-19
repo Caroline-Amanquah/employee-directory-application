@@ -22,7 +22,7 @@ After setting up mongoDB on your desktop or laptop to run MongoDB (the database)
 
 
 ```bash
-cd backend
+cd server
 [your MongoDB startup command: <path_to_mongodb>/bin/mongod --dbpath <path_to_data_directory>
 ]
 ```
